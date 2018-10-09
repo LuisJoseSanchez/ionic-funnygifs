@@ -1,12 +1,46 @@
 <ion-header>
-  <ion-toolbar>
+
+  <ion-toolbar color="secondary">
     <ion-title>
-      Ionic Blank
+      <form [formGroup]="subredditForm">
+        <ion-searchbar
+          placeholder="Introduce nombre de sección..."
+          formControlName="subredditControl"
+          value="">
+        </ion-searchbar>
+      </form>
+      <ion-buttons slot="end">
+        <ion-button (click)="openSettings()">
+          <ion-icon slot="icon-only" name="settings"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-title>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+<ion-content>
+  <ion-list no-lines>
+    <div tappable>
+      <ion-item>
+        AQUÍ VA EL GIF
+      </ion-item>
+      <ion-list-header>
+        <ion-label>AQUÍ VA EL TÍTULO</ion-label>
+      </ion-list-header>
+    </div>
+    <ion-item
+      *ngIf="redditService.loading"
+      no-lines
+      style="text-align: center;">
+    <ion-spinner name="lines-small"></ion-spinner>
+    </ion-item>
+  </ion-list>
+
+  <ion-button
+    color="light"
+    expand="full"
+    (click)="loadMore()">
+    Cargar más...
+  </ion-button>
 </ion-content>
