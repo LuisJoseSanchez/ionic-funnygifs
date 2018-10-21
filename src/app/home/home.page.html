@@ -9,24 +9,36 @@
           value="">
         </ion-searchbar>
       </form>
-      <ion-buttons slot="end">
-        <ion-button (click)="openSettings()">
-          <ion-icon slot="icon-only" name="settings"></ion-icon>
-        </ion-button>
-      </ion-buttons>
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="openSettings()">
+        <ion-icon slot="icon-only" name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 
 </ion-header>
 
 <ion-content>
   <ion-list no-lines>
-    <div tappable>
+    <div
+      tappable (click)="playVideo($event, post)"
+      *ngFor="let post of redditService.posts">
       <ion-item>
-        AQUÍ VA EL GIF
+        <video
+          loop
+          [src]="post.data.url"
+          [poster]="post.data.snapshot">
+        </video>
       </ion-item>
-      <ion-list-header>
-        <ion-label>AQUÍ VA EL TÍTULO</ion-label>
+      <ion-list-header
+        (click)="showComments(posts)"
+        style="text-align: left;">
+        <ion-label>
+          {{ post.data.title }}
+        </ion-label>
       </ion-list-header>
     </div>
     <ion-item
