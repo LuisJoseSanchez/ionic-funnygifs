@@ -42,7 +42,7 @@ export class RedditService {
     this.loading = true;
 
     this.httpClient.get(url).pipe(
-      map(res => {
+      map((res: any) => {
         console.log(res);
         let response = res.data.children;
         let validPosts = 0;
