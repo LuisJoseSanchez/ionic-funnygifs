@@ -71,5 +71,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  loadMore(): void { }
+  loadMore(): void {
+    this.redditService.nextPage();
+  }
 }

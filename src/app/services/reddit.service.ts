@@ -27,7 +27,14 @@ export class RedditService {
   ) { }
 
   load(): void {
-    this.fetchData();
+    this.dataService.getData().then(
+      settings => {
+        if (settings != null) {
+          this.settings = settings;
+        }
+        this.fetchData();
+      }
+    );
   }
 
   fetchData(): void {
@@ -109,7 +116,7 @@ export class RedditService {
         // Desistimos después de 20 intentos aunque no tengamos suficientes.
 
 
-        if (this.moreCount > 20){
+        if (this.moreCount > 20) {
           console.log('Desistiendo...');
           this.moreCount = 0;
           this.loading = false;
@@ -133,11 +140,19 @@ export class RedditService {
   }
 
   nextPage(): void {
+    this.page++;
+    this.fetchData();
   }
 
   resetPosts(): void {
+    this.page = 1;
+    this.posts = [];
+    this.after = null;
+    this.fetchData();
   }
 
   changeSubreddit(subreddit): void {
+    this.settings.subreddit = subreddit;
+    this.resetPosts();
   }
 }
