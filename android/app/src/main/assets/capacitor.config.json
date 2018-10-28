@@ -2,5 +2,6 @@
   "appId": "io.ionic.starter",
   "appName": "ionic-funnygifs",
   "bundledWebRuntime": false,
-  "webDir": "www"
+  "webDir": "www",
+  "linuxAndroidStudioPath": "/home/luisjose/android-studio-ide-181.5014246-linux/android-studio/bin/studio.sh"
 }
