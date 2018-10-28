@@ -1,9 +1,98 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>settings</ion-title>
+  <ion-toolbar color="secondary">
+    
+    <ion-title>Settings</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="close()">
+        <ion-icon
+          slot="icon-only"
+          name="close">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      Funnygifs
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        <strong>Funnygifs</strong> es un cliente de
+        <strong>Reddit</strong> que muestra los <strong>GIFS</strong>
+        de las secciones (subreddit) de esta red social. Por defecto,
+        se usa la sección <strong>gifs</strong> pero puedes elegir
+        cualquier otra sección, por ejemplo perfectloops, chemicalreactiongifs
+        o funny.
+      </p>
+      <p>
+        Para reproducir un GIF, pulsa sobre él. Para ver el artículo
+        original del que procede el GIF, pulsa el título que aparece
+        justo debajo.
+      </p>
+      <p>
+        Puedes configurar la aplicación mediante las opciones que
+        tienes aquí debajo.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <h3>Sección (subreddit)</h3>
+
+  <ion-input
+    type="text"
+    placeholder="Nombre de la sección..."
+    [(ngModel)]="redditService.settings.subreddit">
+  </ion-input>
+
+  <h3>Ordenación</h3>
+
+  <ion-segment
+    color="secondary"
+    [(ngModel)]="redditService.settings.sort">
+
+    <ion-segment-button value="/hot">
+      Popular
+    </ion-segment-button>
+
+    <ion-segment-button value="/top">
+      Más votado
+    </ion-segment-button>
+
+    <ion-segment-button value="/new">
+      Novedad
+    </ion-segment-button>
+
+  </ion-segment>
+
+  <h3>Gifs por página</h3>
+
+  <ion-segment
+    color="secondary"
+    [(ngModel)]="redditService.settings.perPage">
+    <ion-segment-button value="5">
+      5
+    </ion-segment-button>
+    <ion-segment-button value="10">
+      10
+    </ion-segment-button>
+    <ion-segment-button value="15">
+      15
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-button
+    expand="full"
+    (click)="save()"
+    color="secondary">
+    Guardar configuración
+  </ion-button>
 
 </ion-content>

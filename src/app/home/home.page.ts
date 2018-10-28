@@ -7,8 +7,7 @@ import { ModalController } from '@ionic/angular';
 // Estas importaciones se usan más tarde
 import { Plugins } from '@capacitor/core';
 import { SettingsPage } from '../settings/settings.page';
-import { debounceTime } from 'rxjs/operators';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 const { Browser, Keyboard } = Plugins;
 
 @Component({
@@ -25,9 +24,9 @@ export class HomePage implements OnInit {
     public redditService: RedditService,
     private modalController: ModalController) {
 
-      this.subredditForm = new FormGroup({
-        subredditControl: new FormControl('')
-      });
+    this.subredditForm = new FormGroup({
+      subredditControl: new FormControl('')
+    });
   }
 
   ngOnInit() {
@@ -54,7 +53,16 @@ export class HomePage implements OnInit {
     });
   }
 
-  openSettings(): void { }
+  openSettings(): void {
+    this.modalController.create({
+      component: SettingsPage
+    }).then((modal) => {
+      modal.onDidDismiss().then(() => {
+        this.redditService.resetPosts();
+      });
+      modal.present();
+    });
+  }
 
   playVideo(e, post): void {
     console.log(e);

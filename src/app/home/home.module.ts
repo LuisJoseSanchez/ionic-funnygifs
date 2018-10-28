@@ -20,6 +20,7 @@ import { SettingsPage } from '../settings/settings.page';
       }
     ])
   ],
-  declarations: [HomePage, SettingsPage]
+  declarations: [HomePage, SettingsPage],
+  entryComponents: [SettingsPage]
 })
 export class HomePageModule {}

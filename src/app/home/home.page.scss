@@ -1,1 +1,28 @@
+ion-searchbar {
+  --ion-background-color: #fff;
+}
 
+ion-item {
+  --inner-padding-end: 0;
+  --padding-start: 0;
+}
+
+ion-content button {
+  margin: 0px !important;
+}
+
+ion-spinner {
+  margin: auto;
+}
+
+ion-list-header {
+  background-color: #fff !important;
+  margin-bottom: 0px !important;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  background-color: #000;
+}
